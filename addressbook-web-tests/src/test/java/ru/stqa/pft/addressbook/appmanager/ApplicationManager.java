@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +17,7 @@ public class ApplicationManager {
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+
 
     public void init() {
         System.setProperty("webdriver.gecko.driver","C:\\Users\\evgenya_peshkova\\Tools\\geckodriver.exe");
@@ -74,3 +76,4 @@ public class ApplicationManager {
         return contactHelper;
     }
 }
+

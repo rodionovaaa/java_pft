@@ -1,7 +1,9 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
 import java.util.concurrent.TimeUnit;
@@ -17,11 +19,20 @@ public class ApplicationManager {
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    private String browser;
 
+    public ApplicationManager(String browser) {
+
+        this.browser = browser;
+    }
 
     public void init() {
         System.setProperty("webdriver.gecko.driver","C:\\Users\\evgenya_peshkova\\Tools\\geckodriver.exe");
-        driver = new FirefoxDriver();
+        if (browser.equals(BrowserType.FIREFOX)) {
+            driver = new FirefoxDriver();
+        } else {
+            driver = new ChromeDriver();
+        }
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("http://localhost/addressbook");
         groupHelper = new GroupHelper(driver);

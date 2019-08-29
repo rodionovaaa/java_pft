@@ -5,6 +5,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.tests.TestBase;
 
 import java.util.ArrayList;
@@ -31,9 +32,9 @@ public class ContactHelper extends HelperBase {
       type(By.name("email"),contactData.getEmail());
     }
 
-    public void selectContact() {
+    public void selectContact(int index) {
 
-        click(By.name("selected[]"));
+        driver.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContacts() {
@@ -69,18 +70,21 @@ public class ContactHelper extends HelperBase {
     }
 
     public int getContactCount() {
+
         return driver.findElements(By.name("selected[]")).size();
     }
-   /* public List<ContactData> getContactList(){
+
+    public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = driver.findElements(By.cssSelector("td.center"));
-        for (WebElement element:elements){
-            String firstname =  element.getText();
-            String lastname = element.getText();
-            ContactData contact = new ContactData(firstname, lastname, null, null);
+        List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']"));
+        for (WebElement element:elements) {
+            List<WebElement> tds = element.findElements(By.tagName("td"));
+            String lastname = tds.get(1).getText();
+            String firstname = tds.get(2).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+            ContactData contact = new ContactData(id, firstname, lastname, null, null);
             contacts.add(contact);
         }
         return contacts;
-    }*/
+    }
 }
-

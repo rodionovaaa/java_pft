@@ -28,11 +28,13 @@ public class ApplicationManager {
     }
 
     public void init() {
-        System.setProperty("webdriver.gecko.driver","C:\\Users\\evgenya_peshkova\\Tools\\geckodriver.exe");
+        //System.setProperty("webdriver.gecko.driver","C:\\Users\\evgenya_peshkova\\Tools\\geckodriver.exe");
         if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();
-        } else {
+        } else if (browser.equals(BrowserType.CHROME)){
             driver = new ChromeDriver();
+        } else {
+            System.out.println("Unknown browser");
         }
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         driver.get("http://localhost/addressbook");

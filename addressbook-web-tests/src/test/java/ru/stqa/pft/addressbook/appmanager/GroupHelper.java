@@ -61,11 +61,6 @@ public class GroupHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public int count() {
-
-        return driver.findElements(By.name("selected[]")).size();
-    }
-
     public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);

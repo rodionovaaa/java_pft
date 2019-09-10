@@ -5,6 +5,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.bytebuddy.build.ToStringPlugin;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.io.File;

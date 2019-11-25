@@ -35,5 +35,4 @@ public class AdditionInGroupTest extends TestBase {
         Contacts after = app.contact().all();
         assertThat(after, hasItem(contactForAdded));
     }
-
 }
